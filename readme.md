@@ -92,8 +92,8 @@ ORDER BY o.ograd
     	FROM ogrenci o
     	LEFT JOIN islem i on i.ogrno=o.ogrno
 
-=== 8) Kitap almayan öğrencileri listeleyin.
-===
+# === 8) Kitap almayan öğrencileri listeleyin.
+
 SELECT
 o.ograd, o.ogrsoyad,i.atarih
 FROM ogrenci o
@@ -173,8 +173,7 @@ ORDER BY o.ograd
 ===
 SELECT COUNT(ogrno) from ogrenci
 
-=== 17) Öğrenci tablosundaki toplam öğrenci sayısını toplam sayı takma(alias kullanımı) adı ile listeleyin.
-===
+# === 17) Öğrenci tablosundaki toplam öğrenci sayısını toplam sayı takma(alias kullanımı) adı ile listeleyin.
 
     SELECT COUNT(ogrno) AS Toplam Sayı from ogrenci
 
@@ -184,8 +183,7 @@ SELECT COUNT(ogrno) from ogrenci
 
     SELECT COUNT( DISTINCT ograd ) from ogrenci
 
-=== 19) En fazla sayfa sayısı olan kitabın sayfa sayısını listeleyiniz.
-===
+# === 19) En fazla sayfa sayısı olan kitabın sayfa sayısını listeleyiniz.
 
     select Max(sayfasayisi) from kitap
 
@@ -242,8 +240,7 @@ WHERE t.turadi='Dram'
 SELECT CONCAT(sinif ,COUNT(ograd),' ogrenci') from ogrenci o  
  group by sinif
 
-=== 27) Her sınıftaki erkek ve kız öğrenci sayısını bulunuz.
-===
+# === 27) Her sınıftaki erkek ve kız öğrenci sayısını bulunuz.
 
     SELECT sinif ,COUNT(ogrno),cinsiyet  from ogrenci o
     group by sinif,cinsiyet
