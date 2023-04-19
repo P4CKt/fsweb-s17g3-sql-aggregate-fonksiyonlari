@@ -32,69 +32,82 @@ MIN-MAX, COUNT-AVG-SUM, GROUP BY, JOINS (INNER, OUTER, LEFT, RIGHT
     1) Öğrencinin adını, soyadını ve kitap aldığı tarihleri listeleyin.
 
 ===
-SELECT
-ogrenci.ograd, ogrenci.ogrsoyad, islem.atarih
-FROM ogrenci, islem
-WHERE
-ogrenci.ogrno = islem.ogrno;
+
+	SELECT
+	ogrenci.ograd, ogrenci.ogrsoyad, islem.atarih
+	FROM ogrenci, islem
+	WHERE
+	ogrenci.ogrno = islem.ogrno;
+
 ===
 
     2) Fıkra ve hikaye türündeki kitapların adını ve türünü listeleyin.
 
 ===
-SELECT
-k.kitapadi,t.turadi FROM kitap AS k, tur AS t
-WHERE
-k.turno=t.turno AND t.turadi IN ("Hikaye","Fıkra")
+
+	SELECT
+	k.kitapadi,t.turadi FROM kitap AS k, tur AS t
+	WHERE
+	k.turno=t.turno AND t.turadi IN ("Hikaye","Fıkra")
+
 ===
-OR
+	OR
 ===
-SELECT
-k.kitapadi,t.turadi FROM kitap AS k, tur AS t
-WHERE
-k.turno=t.turno AND t.tuRno IN (6,4)
+
+	SELECT
+	k.kitapadi,t.turadi FROM kitap AS k, tur AS t
+	WHERE
+	k.turno=t.turno AND t.tuRno IN (6,4)
 
 ===
 
-    3) 10B veya 10C sınıfındaki öğrencilerin numarasını, adını, soyadını ve okuduğu kitapları listeleyin.
+
+
+    1) 10B veya 10C sınıfındaki öğrencilerin numarasını, adını, soyadını ve okuduğu kitapları listeleyin.
 
 ===
-SELECT
-o.ogrno,o.ograd,o.ogrsoyad,k.kitapadi
-FROM ogrenci AS o , kitap AS k
-WHERE o.sinif in ('10A','10C')
+
+	SELECT
+	o.ogrno,o.ograd,o.ogrsoyad,k.kitapadi
+	FROM ogrenci AS o , kitap AS k
+	WHERE o.sinif in ('10A','10C')
+
 ===
 
     4) Öğrencinin adını, soyadını ve kitap aldığı tarihleri listeleyin.
 
 ===
-SELECT
-o.ograd,o.ogrsoyad,i.atarih
-FROM ogrenci AS o
-INNER JOIN islem i on i.ogrno=o.ogrno
+
+	SELECT
+	o.ograd,o.ogrsoyad,i.atarih
+	FROM ogrenci AS o
+	INNER JOIN islem i on i.ogrno=o.ogrno
 
 ===
 
     5) Fıkra ve hikaye türündeki kitapların adını ve türünü listeleyin.
 
 ===
-SELECT
-k.kitapadi,t.turadi
-FROM kitap AS k
-INNER JOIN tur t on t.turno =k.turno
+
+	SELECT
+	k.kitapadi,t.turadi
+	FROM kitap AS k
+	INNER JOIN tur t on t.turno =k.turno
 
 ===
 
     6) 10B veya 10C sınıfındaki öğrencilerin numarasını, adını, soyadını ve okuduğu kitapları, öğrenci adına göre listeleyin.
 
 ===
-SELECT
-o.ogrno ,o.ograd,o.ogrsoyad,k.kitapadi  
- FROM ogrenci as o
-INNER JOIN islem i on i.ogrno =o.ogrno
-INNER JOIN kitap k on k.kitapno=i.kitapno
-WHERE o.sinif in ('10B','10C')
-ORDER BY o.ograd
+
+	SELECT
+	o.ogrno ,o.ograd,o.ogrsoyad,k.kitapadi  
+	FROM ogrenci as o
+	INNER JOIN islem i on i.ogrno =o.ogrno
+	INNER JOIN kitap k on k.kitapno=i.kitapno
+	WHERE o.sinif in ('10B','10C')
+	ORDER BY o.ograd
+
 ===
 
     7) Kitap alan öğrencinin adı, soyadı, kitap aldığı tarih listelensin. Kitap almayan öğrencilerinde listede görünsün.
@@ -111,32 +124,38 @@ ORDER BY o.ograd
     8) Kitap almayan öğrencileri listeleyin.
 
 ===
-SELECT
-o.ograd, o.ogrsoyad,i.atarih
-FROM ogrenci o
-LEFT JOIN islem i on i.ogrno=o.ogrno
-WHERE ISNULL(i.atarih)
+
+
+	SELECT
+	o.ograd, o.ogrsoyad,i.atarih
+	FROM ogrenci o
+	LEFT JOIN islem i on i.ogrno=o.ogrno
+	WHERE ISNULL(i.atarih)
+
 ===
 
     9) Alınan kitapların kitap numarasını, adını ve kaç defa alındığını kitap numaralarına göre artan sırada listeleyiniz.
 
 ===
-SELECT
-k.kitapno,k.kitapadi,COUNT(i.kitapno) AS KitapKere
-FROM kitap k
-INNER JOIN islem i on k.kitapno=i.kitapno
-GROUP BY k.kitapno
+
+	SELECT
+	k.kitapno,k.kitapadi,COUNT(i.kitapno) AS KitapKere
+	FROM kitap k
+	INNER JOIN islem i on k.kitapno=i.kitapno
+	GROUP BY k.kitapno
 
 ===
 
     10) Alınan kitapların kitap numarasını, adını kaç defa alındığını (alınmayan kitapların yanında 0 olsun) listeleyin.
 
 ===
-SELECT
-k.kitapno,k.kitapadi,COUNT(i.kitapno) AS KitapKere
-FROM kitap k
-INNER JOIN islem i on k.kitapno=i.kitapno
-GROUP BY k.kitapno
+
+	SELECT
+	k.kitapno,k.kitapadi,COUNT(i.kitapno) AS KitapKere
+	FROM kitap k
+	INNER JOIN islem i on k.kitapno=i.kitapno
+	GROUP BY k.kitapno
+
 ===
 
     11) Öğrencilerin adı soyadı ve aldıkları kitabın adı listelensin.
@@ -155,14 +174,15 @@ GROUP BY k.kitapno
     12) Her öğrencinin adı, soyadı, kitabın adı, yazarın adı soyad ve kitabın türünü ve kitabın alındığı tarihi listeleyiniz. Kitap almayan öğrenciler de listede görünsün.
 
 ===
-SELECT
-o.ograd,o.ogrsoyad,k.kitapadi,y.yazarad,y.yazarsoyad ,t.turadi ,i.atarih  
- FROM ogrenci as o
-LEFT JOIN islem i on i.ogrno =o.ogrno
-LEFT JOIN kitap k on k.kitapno=i.kitapno
-LEFT JOIN tur t on t.turno =k.turno
-LEFT JOIN yazar y on y.yazarno=k.yazarno
-ORDER BY o.ograd
+
+	SELECT
+	o.ograd,o.ogrsoyad,k.kitapadi,y.yazarad,y.yazarsoyad ,t.turadi ,i.atarih  
+	FROM ogrenci as o
+	LEFT JOIN islem i on i.ogrno =o.ogrno
+	LEFT JOIN kitap k on k.kitapno=i.kitapno
+	LEFT JOIN tur t on t.turno =k.turno
+	LEFT JOIN yazar y on y.yazarno=k.yazarno
+	ORDER BY o.ograd
 
 ===
 
@@ -202,9 +222,10 @@ ORDER BY o.ograd
     16) Öğrenci tablosundaki öğrenci sayısını gösterin
 
 ===
-SELECT COUNT(ogrno) from ogrenci
 
-# ===
+	SELECT COUNT(ogrno) from ogrenci
+
+===
 
     17) Öğrenci tablosundaki toplam öğrenci sayısını toplam sayı takma(alias kullanımı) adı ile listeleyin.
 
@@ -218,7 +239,10 @@ SELECT COUNT(ogrno) from ogrenci
 
     SELECT COUNT( DISTINCT ograd ) from ogrenci
 
-=== 19) En fazla sayfa sayısı olan kitabın sayfa sayısını listeleyiniz.
+=== 
+
+
+19) En fazla sayfa sayısı olan kitabın sayfa sayısını listeleyiniz.
 
 ===
 
@@ -257,9 +281,10 @@ SELECT COUNT(ogrno) from ogrenci
     23) Dram türündeki en fazla sayfası olan kitabın sayfa sayısını bulunuz.
 
 ===
-Select Max(k.sayfasayisi) from kitap k
-INNER JOIN tur t on t.turno =k.turno
-WHERE t.turadi='Dram'
+
+	Select Max(k.sayfasayisi) from kitap k
+	INNER JOIN tur t on t.turno =k.turno
+	WHERE t.turadi='Dram'
 
 ===
 
@@ -289,12 +314,15 @@ WHERE t.turadi='Dram'
 
 ===
 
-SELECT CONCAT(sinif ,COUNT(ograd),' ogrenci') from ogrenci o  
- group by sinif
+	SELECT CONCAT(sinif ,COUNT(ograd),' ogrenci') from ogrenci o  
+	group by sinif
 
 ===
 
     27) Her sınıftaki erkek ve kız öğrenci sayısını bulunuz.
+
+
+===
 
     SELECT sinif ,COUNT(ogrno),cinsiyet  from ogrenci o
     group by sinif,cinsiyet
